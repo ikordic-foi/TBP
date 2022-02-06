@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="projekt_tbpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dijete">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="spol" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="prezime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ime_oca" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="majka_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mjere_ploda" Relationship="Self.dijete_id_fk" FromRole="dijete" ToRole="mjere_ploda" />
+    <NavigationProperty Name="pacijent" Relationship="Self.majka_id_fk" FromRole="dijete" ToRole="pacijent" />
+  </EntityType>
+  <EntityType Name="dnevnik">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="datum_pocetka_perioda" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="datum_kraja_perioda" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="opis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="naslov" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="datum" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="majka_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pacijent" Relationship="Self.majka_id_fk1" FromRole="dnevnik" ToRole="pacijent" />
+  </EntityType>
+  <EntityType Name="doktor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prezime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telefon" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="uloga" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="doktor_pacijent" Relationship="Self.doktor_id_fk" FromRole="doktor" ToRole="doktor_pacijent" />
+    <NavigationProperty Name="pregleds" Relationship="Self.doktor_id_fk1" FromRole="doktor" ToRole="pregled" />
+  </EntityType>
+  <EntityType Name="doktor_pacijent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pacijent_id" Type="Int32" Nullable="false" />
+    <Property Name="doktor_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="doktor" Relationship="Self.doktor_id_fk" FromRole="doktor_pacijent" ToRole="doktor" />
+    <NavigationProperty Name="pacijent" Relationship="Self.pacijent_id_fk" FromRole="doktor_pacijent" ToRole="pacijent" />
+  </EntityType>
+  <EntityType Name="kilaza">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kilaza1" Type="Single" Nullable="false" />
+    <Property Name="datum" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="majka_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pacijent" Relationship="Self.majka_id_fk3" FromRole="kilaza" ToRole="pacijent" />
+  </EntityType>
+  <EntityType Name="mjere_ploda">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="duzina" Type="Single" Nullable="false" />
+    <Property Name="opseg" Type="Single" Nullable="false" />
+    <Property Name="datum" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="dijete_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dijete" Relationship="Self.dijete_id_fk" FromRole="mjere_ploda" ToRole="dijete" />
+  </EntityType>
+  <EntityType Name="opseg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="opseg1" Type="Single" Nullable="false" />
+    <Property Name="datum" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="majka_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pacijent" Relationship="Self.majka_id_fk4" FromRole="opseg" ToRole="pacijent" />
+  </EntityType>
+  <EntityType Name="pacijent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prezime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="datum_rodenja" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="oib" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="datum_zaceca" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="kilaza" Type="Single" Nullable="false" />
+    <Property Name="telefon" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="uloga" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dijetes" Relationship="Self.majka_id_fk" FromRole="pacijent" ToRole="dijete" />
+    <NavigationProperty Name="dnevniks" Relationship="Self.majka_id_fk1" FromRole="pacijent" ToRole="dnevnik" />
+    <NavigationProperty Name="doktor_pacijent" Relationship="Self.pacijent_id_fk" FromRole="pacijent" ToRole="doktor_pacijent" />
+    <NavigationProperty Name="kilazas" Relationship="Self.majka_id_fk3" FromRole="pacijent" ToRole="kilaza" />
+    <NavigationProperty Name="opsegs" Relationship="Self.majka_id_fk4" FromRole="pacijent" ToRole="opseg" />
+    <NavigationProperty Name="tromjesjecjes" Relationship="Self.majka_id_fk2" FromRole="pacijent" ToRole="tromjesjecje" />
+    <NavigationProperty Name="pregleds" Relationship="Self.pacijent_id_fk1" FromRole="pacijent" ToRole="pregled" />
+  </EntityType>
+  <EntityType Name="pregled">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="datum" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="zapis" Type="String" MaxLength="765" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="doktor_id" Type="Int32" Nullable="false" />
+    <Property Name="pacijent_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="doktor" Relationship="Self.doktor_id_fk1" FromRole="pregled" ToRole="doktor" />
+    <NavigationProperty Name="pacijent" Relationship="Self.pacijent_id_fk1" FromRole="pregled" ToRole="pacijent" />
+  </EntityType>
+  <EntityType Name="tromjesjecje">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pocetak" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="kraj" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="opis" Type="String" MaxLength="765" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="majka_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pacijent" Relationship="Self.majka_id_fk2" FromRole="tromjesjecje" ToRole="pacijent" />
+  </EntityType>
+  <Association Name="dijete_id_fk">
+    <End Role="dijete" Type="Self.dijete" Multiplicity="1" />
+    <End Role="mjere_ploda" Type="Self.mjere_ploda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dijete">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="mjere_ploda">
+        <PropertyRef Name="dijete_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="majka_id_fk">
+    <End Role="pacijent" Type="Self.pacijent" Multiplicity="1" />
+    <End Role="dijete" Type="Self.dijete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacijent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dijete">
+        <PropertyRef Name="majka_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="majka_id_fk1">
+    <End Role="pacijent" Type="Self.pacijent" Multiplicity="1" />
+    <End Role="dnevnik" Type="Self.dnevnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacijent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dnevnik">
+        <PropertyRef Name="majka_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="doktor_id_fk">
+    <End Role="doktor" Type="Self.doktor" Multiplicity="1" />
+    <End Role="doktor_pacijent" Type="Self.doktor_pacijent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doktor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="doktor_pacijent">
+        <PropertyRef Name="doktor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="doktor_id_fk1">
+    <End Role="doktor" Type="Self.doktor" Multiplicity="1" />
+    <End Role="pregled" Type="Self.pregled" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doktor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pregled">
+        <PropertyRef Name="doktor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pacijent_id_fk">
+    <End Role="pacijent" Type="Self.pacijent" Multiplicity="1" />
+    <End Role="doktor_pacijent" Type="Self.doktor_pacijent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacijent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="doktor_pacijent">
+        <PropertyRef Name="pacijent_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="majka_id_fk3">
+    <End Role="pacijent" Type="Self.pacijent" Multiplicity="1" />
+    <End Role="kilaza" Type="Self.kilaza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacijent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="kilaza">
+        <PropertyRef Name="majka_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="majka_id_fk4">
+    <End Role="pacijent" Type="Self.pacijent" Multiplicity="1" />
+    <End Role="opseg" Type="Self.opseg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacijent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="opseg">
+        <PropertyRef Name="majka_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="majka_id_fk2">
+    <End Role="pacijent" Type="Self.pacijent" Multiplicity="1" />
+    <End Role="tromjesjecje" Type="Self.tromjesjecje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacijent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tromjesjecje">
+        <PropertyRef Name="majka_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pacijent_id_fk1">
+    <End Role="pacijent" Type="Self.pacijent" Multiplicity="1" />
+    <End Role="pregled" Type="Self.pregled" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacijent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pregled">
+        <PropertyRef Name="pacijent_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="projekt_tbpEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dijetes" EntityType="Self.dijete" />
+    <EntitySet Name="dnevniks" EntityType="Self.dnevnik" />
+    <EntitySet Name="doktors" EntityType="Self.doktor" />
+    <EntitySet Name="doktor_pacijent" EntityType="Self.doktor_pacijent" />
+    <EntitySet Name="kilazas" EntityType="Self.kilaza" />
+    <EntitySet Name="mjere_ploda" EntityType="Self.mjere_ploda" />
+    <EntitySet Name="opsegs" EntityType="Self.opseg" />
+    <EntitySet Name="pacijents" EntityType="Self.pacijent" />
+    <EntitySet Name="pregleds" EntityType="Self.pregled" />
+    <EntitySet Name="tromjesjecjes" EntityType="Self.tromjesjecje" />
+    <AssociationSet Name="dijete_id_fk" Association="Self.dijete_id_fk">
+      <End Role="dijete" EntitySet="dijetes" />
+      <End Role="mjere_ploda" EntitySet="mjere_ploda" />
+    </AssociationSet>
+    <AssociationSet Name="majka_id_fk" Association="Self.majka_id_fk">
+      <End Role="pacijent" EntitySet="pacijents" />
+      <End Role="dijete" EntitySet="dijetes" />
+    </AssociationSet>
+    <AssociationSet Name="majka_id_fk1" Association="Self.majka_id_fk1">
+      <End Role="pacijent" EntitySet="pacijents" />
+      <End Role="dnevnik" EntitySet="dnevniks" />
+    </AssociationSet>
+    <AssociationSet Name="doktor_id_fk" Association="Self.doktor_id_fk">
+      <End Role="doktor" EntitySet="doktors" />
+      <End Role="doktor_pacijent" EntitySet="doktor_pacijent" />
+    </AssociationSet>
+    <AssociationSet Name="doktor_id_fk1" Association="Self.doktor_id_fk1">
+      <End Role="doktor" EntitySet="doktors" />
+      <End Role="pregled" EntitySet="pregleds" />
+    </AssociationSet>
+    <AssociationSet Name="pacijent_id_fk" Association="Self.pacijent_id_fk">
+      <End Role="pacijent" EntitySet="pacijents" />
+      <End Role="doktor_pacijent" EntitySet="doktor_pacijent" />
+    </AssociationSet>
+    <AssociationSet Name="majka_id_fk3" Association="Self.majka_id_fk3">
+      <End Role="pacijent" EntitySet="pacijents" />
+      <End Role="kilaza" EntitySet="kilazas" />
+    </AssociationSet>
+    <AssociationSet Name="majka_id_fk4" Association="Self.majka_id_fk4">
+      <End Role="pacijent" EntitySet="pacijents" />
+      <End Role="opseg" EntitySet="opsegs" />
+    </AssociationSet>
+    <AssociationSet Name="majka_id_fk2" Association="Self.majka_id_fk2">
+      <End Role="pacijent" EntitySet="pacijents" />
+      <End Role="tromjesjecje" EntitySet="tromjesjecjes" />
+    </AssociationSet>
+    <AssociationSet Name="pacijent_id_fk1" Association="Self.pacijent_id_fk1">
+      <End Role="pacijent" EntitySet="pacijents" />
+      <End Role="pregled" EntitySet="pregleds" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

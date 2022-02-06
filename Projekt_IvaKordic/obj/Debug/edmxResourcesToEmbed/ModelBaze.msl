@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="projekt_tbpModelStoreContainer" CdmEntityContainer="projekt_tbpEntities">
+    <EntitySetMapping Name="dijetes">
+      <EntityTypeMapping TypeName="projekt_tbpModel.dijete">
+        <MappingFragment StoreEntitySet="dijete">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="spol" ColumnName="spol" />
+          <ScalarProperty Name="prezime" ColumnName="prezime" />
+          <ScalarProperty Name="ime_oca" ColumnName="ime_oca" />
+          <ScalarProperty Name="majka_id" ColumnName="majka_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dnevniks">
+      <EntityTypeMapping TypeName="projekt_tbpModel.dnevnik">
+        <MappingFragment StoreEntitySet="dnevnik">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="datum_pocetka_perioda" ColumnName="datum_pocetka_perioda" />
+          <ScalarProperty Name="datum_kraja_perioda" ColumnName="datum_kraja_perioda" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="naslov" ColumnName="naslov" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="majka_id" ColumnName="majka_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doktors">
+      <EntityTypeMapping TypeName="projekt_tbpModel.doktor">
+        <MappingFragment StoreEntitySet="doktor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ime" ColumnName="ime" />
+          <ScalarProperty Name="prezime" ColumnName="prezime" />
+          <ScalarProperty Name="adresa" ColumnName="adresa" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="uloga" ColumnName="uloga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doktor_pacijent">
+      <EntityTypeMapping TypeName="projekt_tbpModel.doktor_pacijent">
+        <MappingFragment StoreEntitySet="doktor_pacijent">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pacijent_id" ColumnName="pacijent_id" />
+          <ScalarProperty Name="doktor_id" ColumnName="doktor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kilazas">
+      <EntityTypeMapping TypeName="projekt_tbpModel.kilaza">
+        <MappingFragment StoreEntitySet="kilaza">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="kilaza1" ColumnName="kilaza" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="majka_id" ColumnName="majka_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mjere_ploda">
+      <EntityTypeMapping TypeName="projekt_tbpModel.mjere_ploda">
+        <MappingFragment StoreEntitySet="mjere_ploda">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="duzina" ColumnName="duzina" />
+          <ScalarProperty Name="opseg" ColumnName="opseg" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="dijete_id" ColumnName="dijete_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="opsegs">
+      <EntityTypeMapping TypeName="projekt_tbpModel.opseg">
+        <MappingFragment StoreEntitySet="opseg">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="opseg1" ColumnName="opseg" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="majka_id" ColumnName="majka_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pacijents">
+      <EntityTypeMapping TypeName="projekt_tbpModel.pacijent">
+        <MappingFragment StoreEntitySet="pacijent">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ime" ColumnName="ime" />
+          <ScalarProperty Name="prezime" ColumnName="prezime" />
+          <ScalarProperty Name="datum_rodenja" ColumnName="datum_rodenja" />
+          <ScalarProperty Name="oib" ColumnName="oib" />
+          <ScalarProperty Name="datum_zaceca" ColumnName="datum_zaceca" />
+          <ScalarProperty Name="kilaza" ColumnName="kilaza" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="adresa" ColumnName="adresa" />
+          <ScalarProperty Name="uloga" ColumnName="uloga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pregleds">
+      <EntityTypeMapping TypeName="projekt_tbpModel.pregled">
+        <MappingFragment StoreEntitySet="pregled">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="zapis" ColumnName="zapis" />
+          <ScalarProperty Name="doktor_id" ColumnName="doktor_id" />
+          <ScalarProperty Name="pacijent_id" ColumnName="pacijent_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tromjesjecjes">
+      <EntityTypeMapping TypeName="projekt_tbpModel.tromjesjecje">
+        <MappingFragment StoreEntitySet="tromjesjecje">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pocetak" ColumnName="pocetak" />
+          <ScalarProperty Name="kraj" ColumnName="kraj" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="majka_id" ColumnName="majka_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
